@@ -53,7 +53,7 @@ class LoginPage extends Component {
             },
             body: JSON.stringify(user),
         });
-        this.props.history.push('/groups');
+       // this.props.history.push('/groups');
 
     }
 

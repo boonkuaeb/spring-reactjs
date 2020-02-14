@@ -1,0 +1,12 @@
+oauth2:
+  server: http://localhost:9999
+  client:
+    grantType: password
+    clientid: talk2amareswaran
+    clientSecret: talk2amareswaran@123
+    accessTokenUri: http://localhost:9999/oauth/token
+    scope: read:write
+
+logging:
+  level:
+    root: debug

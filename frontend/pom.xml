@@ -16,6 +16,9 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<httpcore.version>4.4.11</httpcore.version>
+		<httpclient.version>4.5.8</httpclient.version>
+
 	</properties>
 
 	<dependencies>
@@ -24,18 +27,8 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
