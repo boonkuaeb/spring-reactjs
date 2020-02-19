@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import AppNavbar from "../../AppNavbar";
 import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import {withRouter} from "react-router-dom";
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 
 class LoginPage extends Component {
@@ -34,6 +37,7 @@ class LoginPage extends Component {
         const name = target.name;
         let user = {...this.state.user};
         user[name] = value;
+        console.log(user);
         this.setState({user});
 
     }
@@ -41,22 +45,27 @@ class LoginPage extends Component {
     async handleSubmit(event) {
         event.preventDefault();
 
-        let uri = '/api/login';
+        let uri = '/post-login';
 
         let user = {...this.state.user};
 
-        await fetch(uri, {
+        let settings = {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user),
-        });
-       // this.props.history.push('/groups');
-
-    }
-
+            body: JSON.stringify(user)
+        };
+        try {
+            const fetchResponse = await fetch(uri, settings);
+            const data = await fetchResponse.json();
+            cookies.set('mysession', data.jti);
+            console.log(cookies.get('mysession'));
+        } catch (e) {
+            console.log(e.getMessage);
+        }
+    };
 
     render() {
         let user = {...this.state.user};
@@ -68,32 +77,31 @@ class LoginPage extends Component {
                 <Container>
                     <hr/>
                     {title}
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup >
-                                <Label>Email</Label>
-                                <Input
-                                    name="email"
-                                    id="email"
-                                    type="email"
-                                    value={user.email || ''}
-                                    onChange={this.handleChange}
-                                />
-                            </FormGroup>
-                            <FormGroup >
-                                <Label>Password</Label>
-                                <Input
-                                    name="password"
-                                    id="password"
-                                    value=""
-                                    onChange={this.handleChange}
-                                    type="password"
-                                />
-                            </FormGroup>
-                            <Button block  disabled={!this.validateLogin()} type="submit">
-                                Login
-                            </Button>
-                        </Form>
-
+                    <Form onSubmit={this.handleSubmit}>
+                        <FormGroup>
+                            <Label>Email</Label>
+                            <Input
+                                name="email"
+                                id="email"
+                                type="email"
+                                value={user.email || ''}
+                                onChange={this.handleChange}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Password</Label>
+                            <Input
+                                name="password"
+                                id="password"
+                                value={user.password || ''}
+                                onChange={this.handleChange}
+                                type="password"
+                            />
+                        </FormGroup>
+                        <Button block disabled={!this.validateLogin()} type="submit">
+                            Login
+                        </Button>
+                    </Form>
 
 
                 </Container>

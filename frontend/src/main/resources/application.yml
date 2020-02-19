@@ -1,12 +1,21 @@
-oauth2:
-  server: http://localhost:9999
-  client:
-    grantType: password
-    clientid: talk2amareswaran
-    clientSecret: talk2amareswaran@123
-    accessTokenUri: http://localhost:9999/oauth/token
-    scope: read:write
+server:
+  port: 80
+spring:
+  application:
+    name: gateway-service
 
 logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
   level:
     root: debug
+
+
+spring.cloud.gateway.routes:
+  - id: gateway
+    uri: http://localhost:8443
+    predicates:
+      - Path=/api/**,/oauth/
+
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
