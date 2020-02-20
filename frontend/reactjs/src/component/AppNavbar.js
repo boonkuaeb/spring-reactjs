@@ -25,10 +25,7 @@ export default class AppNavbar extends Component {
                 <Nav className="ml-auto" navbar>
                     <NavItem>
                         <NavLink
-                            href="/user/login">@login</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="https://github.com/oktadeveloper/okta-spring-boot-react-crud-example">GitHub</NavLink>
+                            tag={Link} to="/user/login">@login</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>

@@ -11,7 +11,7 @@
     <groupId>com.bk.projects</groupId>
     <artifactId>frontend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gateway</name>
+    <name>frontend</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -32,17 +32,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.retry</groupId>
-            <artifactId>spring-retry</artifactId>
         </dependency>
 
         <dependency>
@@ -105,7 +94,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run-script build</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -118,7 +107,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <copy todir="${project.build.directory}/classes/public">
+                                <copy todir="${project.basedir}/src/main/resources/public">
                                     <fileset dir="${project.basedir}/reactjs/build"/>
                                 </copy>
                             </target>
