@@ -4,6 +4,9 @@ spring:
   application:
     name: gateway-service
 
+  cloud:
+    discovery:
+      enabled: false
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
@@ -24,7 +27,7 @@ spring.cloud.gateway.routes:
     predicates:
       - Path=/api/note/**
 
-spring.security.oauth2.resourceserver.jwt.jwk-set-uri: http://localhost:9999/.well-known/jwks.json
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri: "http://localhost:9999/.well-known/jwks.json"
 
 management.endpoint.health.show-details: "ALWAYS"
 management.endpoints.web.exposure.include: "*"

@@ -36,7 +36,7 @@ public class AuthController {
 
             MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
             map.add("username", "john@gmail.com");
-            map.add("password", "password");
+            map.add("password", "admin1234");
             map.add("grant_type", "password");
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, requestHeaders);
@@ -56,6 +56,7 @@ public class AuthController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
     @RequestMapping(value = "/post-login", method = RequestMethod.POST)
     public ResponseEntity<?> postAuth() {
 
@@ -73,7 +74,7 @@ public class AuthController {
 
             MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
             map.add("username", "john@gmail.com");
-            map.add("password", "password");
+            map.add("password", "admin1234");
             map.add("grant_type", "password");
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, requestHeaders);
@@ -90,6 +91,7 @@ public class AuthController {
             return ResponseEntity.ok().body(oauth2Token.getBody());
 
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

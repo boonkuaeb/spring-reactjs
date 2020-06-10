@@ -1,9 +1,6 @@
 package groupservice.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,6 +10,8 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "user_group")
+@Getter
+@Setter
 public class Group {
 
     @Id

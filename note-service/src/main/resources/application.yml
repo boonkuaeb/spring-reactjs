@@ -1,6 +1,6 @@
 spring:
   application:
-    name: resourceserver
+    name: note-service
 
 security:
   oauth2:
@@ -10,3 +10,6 @@ security:
 
 server:
   port: 7002
+
+management.endpoint.health.show-details: "ALWAYS"
+management.endpoints.web.exposure.include: "*"
